@@ -1,0 +1,6 @@
+server:
+  port: 8081 # A porta do tenant-service
+
+# Mensagem de teste para verificar se a configuração veio do Git
+welcome:
+  message: "Configuracao do Tenant Service carregada via Git pelo Config Server!"
