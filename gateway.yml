@@ -4,18 +4,17 @@ server:
 spring:
   cloud:
     gateway:
-      # Desabilita a criação de rotas automáticas baseadas no Discovery
       discovery:
         locator:
-          enabled: false # <-- Altere esta linha
-      # A partir de agora, APENAS as rotas abaixo serão consideradas
+          enabled: false
       routes:
         - id: tenant_service_route
           uri: lb://TENANT-SERVICE
           predicates:
             - Path=/api/v1/tenants/**
 
+        # ROTA CORRIGIDA PARA O AUTH-SERVICE
         - id: auth_service_route
           uri: lb://AUTH-SERVICE
           predicates:
-            - Path=/auth/**
+            - Path=/api/auth/** # <-- CORRIGIDO
