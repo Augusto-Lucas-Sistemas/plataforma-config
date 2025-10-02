@@ -1,0 +1,2 @@
+server:
+  port: 8082 # Porta padrão para o serviço de autenticação
