@@ -1,27 +1,20 @@
-# Define a porta em que o Gateway vai rodar
 server:
   port: 8080
 
-# Configuração do Spring Cloud Gateway
 spring:
   cloud:
     gateway:
-      # Habilita a descoberta de serviços via Discovery Server (Eureka)
+      # Desabilita a criação de rotas automáticas baseadas no Discovery
       discovery:
         locator:
-          enabled: true
-      # Lista de regras de roteamento
+          enabled: false # <-- Altere esta linha
+      # A partir de agora, APENAS as rotas abaixo serão consideradas
       routes:
-        # Rota para o Tenant Service
         - id: tenant_service_route
-          # O endereço do serviço. "lb" significa "Load Balancer".
-          # Ele vai procurar no Eureka por um serviço chamado "TENANT-SERVICE".
           uri: lb://TENANT-SERVICE
           predicates:
-            # A condição para essa rota ser ativada.
-            # Se a URL começar com /api/v1/tenants/, encaminhe para o TENANT-SERVICE.
             - Path=/api/v1/tenants/**
-      
+
         - id: auth_service_route
           uri: lb://AUTH-SERVICE
           predicates:
