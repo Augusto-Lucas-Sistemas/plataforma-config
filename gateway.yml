@@ -21,3 +21,8 @@ spring:
             # A condição para essa rota ser ativada.
             # Se a URL começar com /api/v1/tenants/, encaminhe para o TENANT-SERVICE.
             - Path=/api/v1/tenants/**
+      
+        - id: auth_service_route
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/**
