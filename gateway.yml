@@ -7,18 +7,13 @@ jwt:
 spring:
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: false
       routes:
+        - id: tenant_service_route
+          uri: lb://TENANT-SERVICE
+          predicates:
+            - Path=/api/v1/tenants/**
+
         - id: auth_service_route
           uri: lb://auth-service
           predicates:
             - Path=/auth/**
-
-        - id: tenant_service_route
-          uri: lb://tenant-service
-          predicates:
-            - Path=/api/v1/tenants/**
-          filters:
-            - AuthenticationFilter
