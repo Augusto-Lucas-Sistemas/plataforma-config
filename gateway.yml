@@ -2,27 +2,22 @@ server:
   port: 8080
 
 jwt:
-  secret: 
-    key: "IzcFtBQk1g0o1t3AIPdrVZUw0mBsdfmcMmBS2hX5zFKrJrnogQp36jf1aDjVlgiFXkT8FgQ4u4RKs64OCqO1x52IPlwj6ZJOCLuVWBhkvuqRzAffhSYokAStN61uHNSKeirKriwpCWyhm2qFbKadxEGsosH6V1YDQy2PuoaQ6oqshhxqlwEkPIbhrgfNSxZW0bgrrseScJHYTmvBaabMh4HxML3MEhJAMCmkGbfEcp76RsGIDEiWPkHAl9NGmaTm"
+  secret: "6D5A7134743777217A25432A462D4A614E645267556B58703273357638792F42"
 
 spring:
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: false
       routes:
-        # Rota para o Tenant Service - AGORA COM FILTRO DE SEGURANÇA
+        - id: auth_service_route
+          uri: lb://auth-service
+          predicates:
+            - Path=/auth/**
+          filters:
+            - AuthenticationFilter # O filtro também se aplica aqui agora
+
         - id: tenant_service_route
-          uri: lb://TENANT-SERVICE
+          uri: lb://tenant-service
           predicates:
             - Path=/api/v1/tenants/**
           filters:
-            # Aplica nosso filtro de autenticação a esta rota
             - AuthenticationFilter
-
-        # Rota para o Auth Service - SEM FILTRO, POIS É PÚBLICA
-        - id: auth_service_route
-          uri: lb://AUTH-SERVICE
-          predicates:
-            - Path=/auth/**
