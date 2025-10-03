@@ -4,9 +4,3 @@
     # Mensagem de teste para verificar se a configuração veio do Git
     welcome:
       message: "Configuracao do Tenant Service carregada via Git pelo Config Server!"
-
-    # CHAVE SECRETA DO JWT (DEVE SER IDÊNTICA À DO AUTH-SERVICE)
-    jwt:
-      secret:
-        key: IzcFtBQk1g0o1t3AIPdrVZUw0mBsdfmcMmBS2hX5zFKrJrnogQp36jf1aDjVlgiFXkT8FgQ4u4RKs64OCqO1x52IPlwj6ZJOCLuVWBhkvuqRzAffhSYokAStN61uHNSKeirKriwpCWyhm2qFbKadxEGsosH6V1YDQy2PuoaQ6oqshhxqlwEkPIbhrgfNSxZW0bgrrseScJHYTmvBaabMh4HxML3MEhJAMCmkGbfEcp76RsGIDEiWPkHAl9NGmaTm
-    
